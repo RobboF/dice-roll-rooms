@@ -1,0 +1,37 @@
+version: '3.6'
+services:
+  react-roller:
+    image: robbof/nodemon
+    volumes:
+    - "${PWD}/react-roller:/usr/src/app"
+    working_dir: "/usr/src/app"
+    entrypoint:
+    - "yarn"
+    - "start"
+    ports:
+    - 3000:3000
+  postgres:
+    image: postgres
+    restart: always
+    volumes:
+    - db_data:/var/lib/postgresql/data
+  graphql-engine:
+    image: hasura/graphql-engine:v1.0.0-alpha45
+    depends_on:
+    - "postgres"
+    restart: always
+    ports:
+    - 8080:8080
+    environment:
+      # database url to connect
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:@postgres:5432/postgres
+      # enable the console served by server
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set "false" to disable console
+      ## uncomment next line to set an admin secret key
+      # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+    command:
+    - graphql-engine 
+    - serve
+volumes:
+  db_data:
+  caddy_certs:
