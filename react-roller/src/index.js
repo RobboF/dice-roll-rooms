@@ -39,11 +39,11 @@ const theme = createMuiTheme({
 });
 
 const httpLink = new HttpLink({
-  uri: "http://robbo.xyz:8080/v1alpha1/graphql",
+  uri: "http://graphql-engine:8080/v1alpha1/graphql",
 });
 
 const wsLink = new WebSocketLink({
-  uri: "ws://robbo.xyz:8080/v1alpha1/graphql",
+  uri: "ws://graphql-engine:8080/v1alpha1/graphql",
   options: {
     reconnect: true
   },

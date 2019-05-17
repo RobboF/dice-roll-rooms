@@ -80,7 +80,7 @@ rollDice = (completeDiceNumber) => {
   }
   `
 
-  fetch('http://robbo.xyz:8080/v1alpha1/graphql', {
+  fetch('http://graphql-engine:8080/v1alpha1/graphql', {
     method: 'POST',
     mode: "cors",
     headers: {

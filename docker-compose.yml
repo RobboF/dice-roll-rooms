@@ -35,3 +35,8 @@ services:
 volumes:
   db_data:
   caddy_certs:
+
+networks:
+  web:
+    external: true
+
